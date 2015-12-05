@@ -61,6 +61,56 @@ AnimateUtil.prototype={
         });
     },
 
+    //旋转
+    //rad
+    rotate:function(beginR,endR,t,call){
+        var timeCount = new Date().getTime();
+        var timeLength = t*1000;
+
+        var lengthR = endR-beginR;
+        var rate = lengthR/timeLength;
+
+        var _this = this;
+        this._addTask(function(){
+            var timeNow = new Date().getTime();
+            var timeStep = timeNow - timeCount;
+            var nowR;
+            if(timeStep>timeLength){
+                nowR = endR;
+                _this._removeTask(arguments.callee);
+            }else{
+                nowR = beginR + rate * timeStep;
+            }
+            if(call){
+                call(nowR);
+            }
+        });
+    },
+    //放缩
+    scale:function(beginS,endS,t,call){
+        var timeCount = new Date().getTime();
+        var timeLength = t*1000;
+
+        var lengthS = endS - beginS;
+        var rate = lengthS/timeLength;
+
+        var _this = this;
+        this._addTask(function () {
+            var timeNow = new Date().getTime();
+            var timeStep = timeNow - timeCount;
+            var nowS;
+            if(timeStep>timeLength){
+                nowS = endS;
+                _this._removeTask(arguments.callee);
+            }else{
+                nowS = beginS + rate*timeStep;
+            }
+            if(call){
+                call(nowS);
+            }
+        });
+    },
+
     _addTask:function(task){
         this._tasks.push(task);
     },

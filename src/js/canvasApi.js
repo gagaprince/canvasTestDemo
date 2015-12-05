@@ -109,6 +109,31 @@ DrawUtil.prototype={
 
 
     },
+    //以一定的角度绘制美女
+    //锚点就是用来解决基准点的问题
+    drawImageByRotate:function(imgsrc,sx,sy,swidth,sheight,x,y,width,height,rotate){
+        var ctx = this.ctx;
+        ctx.save();
+
+        ctx.translate(x+width/2,y+height/2);//顺序很重要
+        ctx.rotate(rotate);
+        this.drawImage(imgsrc,sx,sy,swidth,sheight,-width/2,-height/2,width,height);
+
+        ctx.restore();
+    },
+    //以一定的放缩比绘制美女
+    //注意锚点
+    drawImageByScale:function(imgsrc,sx,sy,swidth,sheight,x,y,width,height,scale){
+        var ctx = this.ctx;
+        ctx.save();
+
+        ctx.translate(x+width/2,y+height/2);
+        ctx.scale(scale,scale);
+        this.drawImage(imgsrc,sx,sy,swidth,sheight,-width/2,-height/2,width,height);
+
+        ctx.restore();
+    },
+
 
     loadImg:function(imgSrc,onLoad,onError){
         var img = new Image();

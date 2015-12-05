@@ -26,9 +26,17 @@ $(document).ready(function(){
 
     drawUtil.loadImg(meinvImgSrc, function (img) {
         drawUtil.drawImage(img,0,0,200,200,50,50,180,180);
-        animateUtil.move(beginP,endP,nowP,2,function(){
+        /*animateUtil.move(beginP,endP,nowP,2,function(){
             drawUtil.clear();
             drawUtil.drawImage(img,0,0,200,200,nowP.getX(),nowP.getY(),180,180);
+        });*/
+        /*animateUtil.rotate(0,Math.PI,3,function(nowR){
+            drawUtil.clear();
+            drawUtil.drawImageByRotate(img,0,0,200,200,50,50,180,180,nowR);
+        });*/
+        animateUtil.scale(1,2,3,function(scalNow){
+            drawUtil.clear();
+            drawUtil.drawImageByScale(img,0,0,200,200,50,50,180,180,scalNow);
         });
     });
 
