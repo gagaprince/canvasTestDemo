@@ -121,6 +121,10 @@ DrawUtil.prototype={
            }
         });
 
+    },
+    //清除当前画布上的所有图案
+    clear:function(){
+        this.fillRectByColor(0,0,this.width,this.height,"#ffffff");
     }
 
 
