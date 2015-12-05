@@ -89,15 +89,20 @@ DrawUtil.prototype={
         var ctx = this.ctx;
         ctx.save();
 
-        this._loadImg(imgsrc,function(img){
+        if(typeof imgsrc == "string"){
+            this.loadImg(imgsrc,function(img){
 
-            ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+                ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
 
 
 
-        }, function (img) {
-            alert("load img error!");
-        });
+            }, function (img) {
+                alert("load img error!");
+            });
+        }else{
+            ctx.drawImage(imgsrc,sx,sy,swidth,sheight,x,y,width,height);
+        }
+
 
 
         ctx.restore();
@@ -105,7 +110,7 @@ DrawUtil.prototype={
 
     },
 
-    _loadImg:function(imgSrc,onLoad,onError){
+    loadImg:function(imgSrc,onLoad,onError){
         var img = new Image();
         img.src = imgSrc;
 
